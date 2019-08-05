@@ -3,7 +3,7 @@ import Layout from "../components/Layout";
 
 const Schedule = () => 
     <Layout>
-        <div> schedule </div>
+        <div> schedule info </div>
     </Layout>;
 
 export default Schedule;
