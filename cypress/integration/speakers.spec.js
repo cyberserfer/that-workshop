@@ -7,7 +7,7 @@ context('Speakers', () => {
     it('list', () => {
       cy.contains('Speakers').click()
       cy.get('li').should('contain', 'Matt Reetz')
-      cy.get('li').should('contain', 'Tim Gremore')
+      cy.get('li').should('contain', 'Paul Buss')
     })
   })
 })
