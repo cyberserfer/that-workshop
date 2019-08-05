@@ -12,53 +12,69 @@ import {
   CardSubtitle,
 } from "reactstrap";
 
-const Speaker = () => {
-  const {
-    speaker: {
-      firstname,
-      lastname,
-      speakerId,
-      avatar,
-      biography,
-      email,
-      title,
+const GET_SPEAKER = gql`
+  query speaker($id: ID!) {
+    speaker(id: $id) {
+      speakerId: id
+      firstname
+      lastname
+      avatar
+      biography
+      email
+      title
       company
     }
-  } = {
-    speaker: {
-      firstname: '',
-      lastname: '',
-      speakerId: '1',
-      avatar: null,
-      biography: '',
-      email: '',
-      title: '',
-      company: '',
-    }
-  };
+  }
+`;
 
-  return (
-    <Layout>
-      <Card>
-        <CardBody>
-          <CardImg src={avatar} alt="Speaker Image" className="cardImage" />
-        </CardBody>
-        <CardBody>
-          <CardTitle> {`${firstname} ${lastname} - ${speakerId}`}</CardTitle>
-          <CardSubtitle>{`${company} - ${title}`}</CardSubtitle>
-          <CardSubtitle>{email}</CardSubtitle>
-        </CardBody>
-        <CardBody>
-          <CardText>{biography}</CardText>
-        </CardBody>
-      </Card>
-      <style jsx global>{`
-        .cardImage {
-          width: 40px;
-        }
-      `}</style>
-    </Layout>
-  );
-};
+const Speaker = () => {
+  const {
+    query: { id }
+  } = useRouter();
+
+  const { data, error } = useQuery(GET_SPEAKER, {
+    variables: {id}
+  });
+
+
+  if (!data || !data.speaker || error) return null;
+
+  //const Speaker = () => {
+    const {
+      speaker: {
+        firstname,
+        lastname,
+        speakerId,
+        avatar,
+        biography,
+        email,
+        title,
+        company
+      }
+    } = data;
+
+    return (
+      <Layout>
+        <Card>
+          <CardBody>
+            <CardImg src={avatar} alt="Speaker Image" className="cardImage" />
+          </CardBody>
+          <CardBody>
+            <CardTitle> {`${firstname} ${lastname} - ${speakerId}`}</CardTitle>
+            <CardSubtitle>{`${company} - ${title}`}</CardSubtitle>
+            <CardSubtitle>{email}</CardSubtitle>
+          </CardBody>
+          <CardBody>
+            <CardText>{biography}</CardText>
+          </CardBody>
+        </Card>
+        <style jsx global>{`
+          .cardImage {
+            width: 40px;
+          }
+        `}</style>
+      </Layout>
+    );
+}
 
 export default withData(Speaker);
