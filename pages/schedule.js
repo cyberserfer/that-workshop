@@ -1,9 +1,12 @@
 import Layout from "../components/Layout";
-import { ListGroup, ListGroupItem, Media } from "reactstrap";
+import {
+  ListGroup,
+  ListGroupItem,
+  Media
+} from "reactstrap";
 
 
-const events = [
-  {
+const events = [{
     id: 1,
     title: "Conference Kickoff",
     description: "Conference Welcoming Party",
@@ -22,29 +25,37 @@ const events = [
 ];
 
 const Schedule = () => {
-  return (
-    <Layout>
-      <h1 className="title">Speakers</h1>
-      <ListGroup>
-        {events.map(event => {
-          return (
-            <ListGroupItem className="justify-content-between">
-              <Media>
-                <Media heading>
-                  {event.title}
-                </Media>
-              </Media>
-            
-                <Media body>
-                  <Media>{event.description}</Media>
-                  {event.speakerIds}
-                </Media>
-            </ListGroupItem>
+  return ( <
+      Layout >
+      <
+      h1 className = "title" > Speakers < /h1> <
+      ListGroup > {
+        events.map(event => {
+            return ( <
+                ListGroupItem className = "justify-content-between" >
+                <
+                Media >
+                <
+                Media heading > {
+                  event.title
+                } <
+                /Media> < /
+                Media > <
+                Media body >
+                <
+                Media > {
+                  event.description
+                } < /Media> {
+                event.speakerIds
+              } <
+              /Media> < /
+            ListGroupItem >
           );
-        })}
-      </ListGroup>
-    </Layout>
-  );
+        })
+    } <
+    /ListGroup> < /
+  Layout >
+);
 };
 
 export default Schedule;
