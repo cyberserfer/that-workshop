@@ -1,5 +1,5 @@
 import "bootstrap/dist/css/bootstrap.css";
-import { Jumbotron, Button } from "reactstrap";
+import { Jumbotron } from "reactstrap";
 import Layout from "../components/Layout";
 
 const About = () =>
